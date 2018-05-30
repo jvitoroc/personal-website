@@ -1,13 +1,16 @@
-var leftColumn = document.getElementById("left-column");
-var fixedLeftColumn = document.getElementById("fixed-left-column");
+var leftColumn = $("#left-column");
+var fixedLeftColumn = $("#fixed-left-column");
+var gap = $("#gap-between-columns");
 var resumeNav = $("#sections-nav");
 
 function mouseOver(){
-    leftColumn.classList.add("active");
+    leftColumn.addClass("active");
+    gap.addClass("active");
 }
 
 function mouseOut(){
-    leftColumn.classList.remove("active");
+    leftColumn.removeClass("active");
+    gap.removeClass("active");
 }
 
 function onScroll(){
@@ -22,8 +25,8 @@ onScroll = debounce(onScroll, 100);
 
 $(window).on("scroll", onScroll);
 
-fixedLeftColumn.addEventListener("mouseover", mouseOver);
-fixedLeftColumn.addEventListener("mouseout", mouseOut);
+fixedLeftColumn.on("mouseover", mouseOver);
+fixedLeftColumn.on("mouseout", mouseOut);
 
 //
 

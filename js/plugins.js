@@ -51,6 +51,13 @@ $('#fullpage').fullpage({
   // hack
 $("body").attr("style", "overflow-x: hidden !important; height: initial; overflow-y: visible");
 
+
+var msnry = new Masonry( '#work-slide > .grid', {
+  itemSelector: '.grid-item',
+  columnWidth: 200,
+  percentPosition: true
+});
+
 var w = window,
     d = document,
     e = d.documentElement,
