@@ -1,0 +1,305 @@
+@font-face{
+    font-family: "Cinzel";
+    src: "../fonts/Cinzel-Regular.ttf",
+}
+
+@font-face{
+    font-family: "Roboto";
+    src: "../fonts/Roboto-Light",
+         "../fonts/Roboto-Medium",
+         "../fonts/Roboto-Bold";
+}
+
+/*
+* I just wanted the best performance I could get, now the CSS is hard to maintain.
+* Never abuse of selectors.
+*/
+
+ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+body{
+    font-family: "Roboto";
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* << COLUMNS */
+
+body > .wrap{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-content: flex-end;
+}
+
+.wrap > .main-column {
+    flex: 1 0 auto;
+}
+
+.wrap > .main-column > .column-content{
+    margin-top: 106px;
+}
+
+/* COLUMNS >> */
+
+/* << LEFT COLUMN */
+
+
+.wrap > .main-column.left-column{
+    width: 200px;
+    transition: 0.5s;
+}
+
+.wrap > .main-column.left-column.active{
+    width: 250px;
+}
+
+body > .fixed-left-column{
+    width: 200px;
+    padding-top: 108px;
+    height: 100%;
+    position: fixed;
+    user-select: none;
+}
+
+body > .fixed-left-column .username{
+    font-family: "Cinzel";
+    font-weight: 400;
+    font-size: 1.8em;
+    margin: 0;
+    text-align: center;
+    color: #6b6b6b;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body > .fixed-left-column .nav{
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: 32px;
+    margin-top: 70px;
+}
+
+body > .fixed-left-column .nav.menu > ul > li{
+    font-weight: 300;
+    font-size: 1.4em;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+body > .fixed-left-column .nav.menu > ul > li:not(:last-of-type){
+    margin-bottom: 10px;
+}
+
+body > .fixed-left-column .nav.menu > ul > li::after{
+    content: "";
+    display: block;
+    width: 20%;
+    height: 1px;
+    background: #707070;
+    transition: 0.3s;
+    margin-top: 8px;
+}
+
+body > .fixed-left-column .nav.menu > ul > li.active,
+body > .fixed-left-column .nav.menu > ul > li:hover{
+    color: #000;
+}
+
+body > .fixed-left-column .nav.menu > ul > li.active:after,
+body > .fixed-left-column .nav.menu > ul > li:hover:after{
+    width: 80%;
+    background: #000;
+}
+
+body > .fixed-left-column .nav.external-links{
+    margin-top: 70px;
+}
+
+body > .fixed-left-column .nav.external-links > ul{
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+body > .fixed-left-column .nav.external-links > ul > li{
+    margin: 3px 0;
+}
+
+body > .fixed-left-column .nav.external-links > ul > li > a{
+    display: inline-block;
+    color: rgba(0,0,0,0.53);
+    transition: 0.2s;
+    width: 100px;
+}
+
+body > .fixed-left-column .nav.external-links > ul > li .icon{
+    position: relative;
+    left: 70px;
+    bottom: 1px;
+    z-index: -1;
+}
+
+body > .fixed-left-column .nav.external-links > ul > li .icon path{
+    fill: rgba(0,0,0,0.53);
+    transition: 0.2s;
+}
+
+body > .fixed-left-column .nav.external-links > ul > li:hover a{
+    color: #000;
+}
+
+body > .fixed-left-column .nav.external-links > ul > li:hover .icon path{
+    fill: #000;
+}
+
+
+/* LEFT COLUMN >> */
+
+/* << RIGHT COLUMN */
+
+.wrap > .main-column.right-column{
+    background: #fff;
+    z-index: 2;
+    width: calc(100% - 200px);
+    -webkit-box-shadow: -10px 0px 20px 0px rgba(171,171,171,0.61);
+    -moz-box-shadow: -10px 0px 20px 0px rgba(171,171,171,0.61);
+    box-shadow: -10px 0px 20px -5px rgba(171,171,171,0.61);
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.wrap > .main-column.right-column > .column-content{
+    padding-left: 20px;
+}
+
+/* << SLIDES */
+
+.right-column > .column-content > .slide.active-slide{
+    display: block;
+}
+
+.right-column > .column-content > .slide{
+    display: none;
+}
+
+/* SLIDES >> */
+
+ /* << SECTIONS */
+
+ .wrap .right-column .section .section-title{
+    color: rgba(0,0,0,0.65);
+    font-size: 2em;
+    margin: 0 0 0 15px;
+}
+
+.wrap > .main-column.right-column .resume{
+    overflow: hidden;
+}
+
+.wrap > .main-column.right-column .resume-sections{
+    margin-top: 100px;
+}
+
+.wrap > .main-column.right-column .section .section-content{
+    width: 550px;
+    margin-top: 75px;
+}
+
+.wrap > .main-column.right-column .section .section-content .section-list-item{
+    margin-bottom: 45px;
+}
+
+.wrap > .main-column.right-column .section .section-content .section-list-item-title{
+    font-weight: bold;
+    position: relative;
+    margin: 0px;
+}
+
+/* left title of each section list item */
+.wrap > .main-column.right-column .section .section-content .section-list-item-title.left:after{
+    content: "";
+    width: 4px;
+    height: 4px;
+    background: #000;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 9px;
+}
+
+.wrap > .main-column.right-column .section .section-content .section-list-item-year{
+    font-weight: 400;
+    color: #707070;
+}
+
+.wrap > .main-column.right-column .section .section-content .section-list-item-description{
+    font-weight: 400;
+    font-size: 0.875em;
+}
+
+.wrap > .main-column.right-column .section .section-content .section-list-item-description > p{
+    margin: 5px 0 0 0;
+}
+
+/* SECTIONS >> */
+
+/* << SECTION NAV */
+
+.wrap > .main-column.right-column > .column-content{
+    margin: 0;
+}
+
+.wrap > .main-column.right-column .resume > .sections-nav{
+    width: 100%;
+    height: 80px;
+    margin-left: -20px;
+    background: #fff;
+    z-index: 3;
+    position: fixed;
+    transition: 0.3s;
+}
+
+.wrap > .main-column.right-column .resume > .sections-nav.show-shadow{
+    -webkit-box-shadow: 0 20px 20px -20px rgba(171,171,171,0.61);
+    -moz-box-shadow: 0 20px 20px -20px rgba(171,171,171,0.61);
+    box-shadow: 0 20px 20px -20px rgba(171,171,171,0.61);
+}
+
+.wrap > .main-column.right-column .resume > .sections-nav nav{
+    position: absolute;
+    bottom: 10px;
+    margin-left: 26px;
+}
+
+.wrap > .main-column.right-column .resume > .sections-nav ul{
+    display: flex;
+}
+
+.wrap > .main-column.right-column .resume > .sections-nav ul li > a{
+    padding: 5px 10px;
+    margin-right: 10px;
+    color: rgba(0,0,0,0.67);
+    transition: 0.2s;
+    user-select: none;
+    cursor: pointer;
+}
+
+.wrap > .main-column.right-column .resume > .sections-nav ul li.active > a,
+.wrap > .main-column.right-column .resume > .sections-nav ul li:hover > a{
+    color: #000;
+}
+
+/* SECTION NAV >> */
+
+ /* RIGHT COLUMN >> */
