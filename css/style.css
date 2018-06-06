@@ -38,52 +38,21 @@ body > #gap-between-columns{
     position: fixed;
     height: 100%;
     transform: translateX(200px);
-    width: 30px;
-    z-index: 10;
+    width: 200px;
+    z-index: 2;
     -webkit-box-shadow: -10px 0px 20px 0px rgba(171,171,171,0.61);
     -moz-box-shadow: -10px 0px 20px 0px rgba(171,171,171,0.61);
     box-shadow: -10px 0px 20px -5px rgba(171,171,171,0.61);
     transition-property: transform;
     transition-duration: 0.3s;
-    transition-timing-function: ease-in-out;
     background: #fff;
 }
 
-body > #gap-between-columns.active{
+body > #gap-between-columns.slide-to-right{
     transform: translateX(250px);
 }
 
-/* << COLUMNS */
-
-body > .wrap{
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-}
-
-.wrap > .main-column {
-    flex: 1 0 auto;
-}
-
-.wrap > .main-column > .column-content{
-    margin-top: 106px;
-}
-
-/* COLUMNS >> */
-
 /* << LEFT COLUMN */
-
-
-.wrap > .main-column.left-column{
-    width: 200px;
-    transition-property: width;
-    transition-duration: 0.3s;
-    transition-timing-function: ease-in-out;
-}
-
-.wrap > .main-column.left-column.active{
-    width: 250px;
-}
 
 body > .fixed-left-column{
     width: 200px;
@@ -91,6 +60,7 @@ body > .fixed-left-column{
     height: 100%;
     position: fixed;
     user-select: none;
+    z-index: 1;
 }
 
 body > .fixed-left-column .username{
@@ -122,7 +92,7 @@ body > .fixed-left-column .nav.menu > ul > li:not(:last-of-type){
     margin-bottom: 10px;
 }
 
-body > .fixed-left-column .nav.menu > ul > li::after{
+body > .fixed-left-column .nav.menu > ul > li:after{
     content: "";
     display: block;
     width: 20%;
@@ -140,7 +110,6 @@ body > .fixed-left-column .nav.menu > ul > li:hover{
 body > .fixed-left-column .nav.menu > ul > li.active:after,
 body > .fixed-left-column .nav.menu > ul > li:hover:after{
     width: 80%;
-    background: #000;
 }
 
 body > .fixed-left-column .nav.external-links{
@@ -190,25 +159,40 @@ body > .fixed-left-column .nav.external-links > ul > li:hover .icon path{
 
 .wrap > .main-column.right-column{
     background: #fff;
-    z-index: 2;
+    z-index: 3;
+    position: relative;
+    margin-left: 200px;
     width: calc(100% - 200px);
+    max-width: 850px;
+    transition: 0.3s;
     -moz-backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
 
+.wrap > .main-column.right-column.slide-to-right{
+    margin-left: 250px;
+}
+
 .wrap > .main-column.right-column > .column-content{
-    padding-left: 30px;
+    margin-left: 30px;
+    max-width: calc(100% - 50px);
+    min-width: calc(100% - 50px);
+    position: relative;
 }
 
 /* << SLIDES */
 
 .right-column > .column-content > .slide.active-slide{
-    display: block;
+    transform: translateX(0);
 }
 
 .right-column > .column-content > .slide{
-    display: none;
+    transform: translateX(-150%); /* I should be using the vw unit, but I want full compability */
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 /* SLIDES >> */
@@ -275,17 +259,13 @@ body > .fixed-left-column .nav.external-links > ul > li:hover .icon path{
 
 /* << SECTION NAV */
 
-.wrap > .main-column.right-column > .column-content{
-    margin: 0;
-}
-
 .wrap > .main-column.right-column .resume > .sections-nav{
     width: 100%;
     height: 80px;
     margin-left: -20px;
     background: #fff;
-    z-index: 3;
     position: fixed;
+    z-index: 3;
     transition: 0.3s;
 }
 
@@ -314,6 +294,10 @@ body > .fixed-left-column .nav.external-links > ul > li:hover .icon path{
     cursor: pointer;
 }
 
+#education .section-content{
+    margin-bottom: 150px;
+}
+
 .wrap > .main-column.right-column .resume > .sections-nav ul li.active > a,
 .wrap > .main-column.right-column .resume > .sections-nav ul li:hover > a{
     color: #000;
@@ -323,26 +307,98 @@ body > .fixed-left-column .nav.external-links > ul > li:hover .icon path{
 
 /* << WORK SLIDE */
 
-#work-slide > .grid{
-    max-width: 100%;
+.work-grid > .grid-item img{
+    width: 100%;
+    display: block;
 }
 
-.grid:after {
+.work-grid{
+    margin: auto;
+    margin-top: 20px;
+}
+
+.work-grid > .grid-item{
+    overflow: hidden;
+    float: left;
+    width: 175px;
+    height: 175px;
+    margin: 5px;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+
+.work-grid > .grid-item > .not-selected{
+    transition: 0.3s;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.work-grid:hover > .grid-item:hover .selected {
+    opacity: 1;
+}
+
+.work-grid > .grid-item > .inner{
+    width: 100%;
+    height: auto;
+    transform: translateY(0);
+    animation-name: slide-top-bottom;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+    position: relative;
+}
+
+.work-grid > .grid-item > .selected{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    text-align: center;
+    background: rgba(0,0,0,0.5);
+    transition: 0.3s;
+}
+
+.work-grid > .grid-item > .selected .grid-item-link{
+    display: table-cell;
+    vertical-align: middle;
+    width: 175px;
+    height: 175px;
+}
+
+.work-grid > .grid-item > .selected .grid-item-link-inner{
+    margin: auto;
+}
+
+@keyframes slide-top-bottom{
+    from{transform: translateY(0);}
+    /* some master's math here  */
+    to{transform: translateY(calc(-50% + (175px - 50%)));} 
+}
+
+.work-grid:after {
     content: '';
     display: block;
     clear: both;
-  }
-
-#work-slide > .grid > .grid-item{
-    float: left;
-    width: 25%;
-    height: auto;
-}
-
-#work-slide > .grid > .grid-item > img{
-    width: 100%;
 }
 
 /* WORK SLIDE >> */
 
  /* RIGHT COLUMN >> */
+
+.see-more-link{
+    padding: 17px;
+    margin: 10px 0 30px 0;
+}
+
+.see-more-link > a{
+    color: rgba(0,0,0,0.65);
+    font-size: 1.2em;
+}

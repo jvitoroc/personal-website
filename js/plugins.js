@@ -36,33 +36,38 @@ function debounce(func, wait, immediate) {
 	};
 };
 
-
 $('#fullpage').fullpage({
   scrollBar: true,
+  fitToSection: false,
   autoScrolling: false,
   paddingTop: '0',
   paddingBottom: '0',
   menu: '#menu',
   sectionSelector: '.fp-section',
   bigSectionsDestination: 'top',
-  anchors: ['fp-certificates', 'fp-skills', 'fp-education']
+  anchors: ['fp-certificates', 'fp-skills', 'fp-education'],
 });
 
   // hack
 $("body").attr("style", "overflow-x: hidden !important; height: initial; overflow-y: visible");
 
 
-var msnry = new Masonry( '#work-slide > .grid', {
+//
+
+var workGrid = document.querySelector('.work-grid');
+
+var workIsotope = new Isotope(workGrid, {
   itemSelector: '.grid-item',
-  columnWidth: 200,
-  percentPosition: true
+  layoutMode: 'fitRows'
 });
 
-var w = window,
-    d = document,
-    e = d.documentElement,
-    g = d.getElementsByTagName('body')[0],
-    x = w.innerWidth || e.clientWidth || g.clientWidth,
-    y = w.innerHeight|| e.clientHeight|| g.clientHeight;
 
-// Place any jQuery/helper plugins in here.
+
+// var w = window,
+//     d = document,
+//     e = d.documentElement,
+//     g = d.getElementsByTagName('body')[0],
+//     x = w.innerWidth || e.clientWidth || g.clientWidth,
+//     y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+
+// // Place any jQuery/helper plugins in here.

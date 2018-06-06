@@ -1,16 +1,16 @@
-var leftColumn = $("#left-column");
+var rightColumn = $(".right-column");
 var fixedLeftColumn = $("#fixed-left-column");
 var gap = $("#gap-between-columns");
 var resumeNav = $("#sections-nav");
 
 function mouseOver(){
-    leftColumn.addClass("active");
-    gap.addClass("active");
+    rightColumn.addClass("slide-to-right");
+    gap.addClass("slide-to-right");
 }
 
 function mouseOut(){
-    leftColumn.removeClass("active");
-    gap.removeClass("active");
+    rightColumn.removeClass("slide-to-right");
+    gap.removeClass("slide-to-right");
 }
 
 function onScroll(){
