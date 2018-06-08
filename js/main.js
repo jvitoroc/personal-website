@@ -4,11 +4,15 @@ var gap = $("#gap-between-columns");
 var resumeNav = $("#sections-nav");
 
 function mouseOver(){
+    if(window.innerWidth <= 800)
+        return;
     rightColumn.addClass("slide-to-right");
     gap.addClass("slide-to-right");
 }
 
 function mouseOut(){
+    if(window.innerWidth <= 800)
+        return;
     rightColumn.removeClass("slide-to-right");
     gap.removeClass("slide-to-right");
 }
@@ -55,4 +59,21 @@ resumeButton.on("click", ()=>{
 
 workButton.on("click", ()=>{
     changeSlide(workSlide, resumeSlide, workButton, resumeButton);
+});
+
+//
+
+var hamburger = $(".hamburger");
+
+hamburger.on("click", ()=>{
+    if(!hamburger.hasClass("is-active")){
+        rightColumn.addClass("slide-to-right");
+        gap.addClass("slide-to-right");
+        hamburger.addClass("is-active");
+    }else{
+        rightColumn.removeClass("slide-to-right");
+        gap.removeClass("slide-to-right");
+        hamburger.removeClass("is-active");
+    }
+    
 });

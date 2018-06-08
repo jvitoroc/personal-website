@@ -152,6 +152,12 @@ body > .fixed-left-column .nav.external-links > ul > li:hover .icon path{
     fill: #000;
 }
 
+.wrap > .main-column.right-column > .hamburger{
+    position: fixed;
+    z-index: 4;
+    width: 100px;
+    display: none;
+}
 
 /* LEFT COLUMN >> */
 
@@ -184,15 +190,14 @@ body > .fixed-left-column .nav.external-links > ul > li:hover .icon path{
 /* << SLIDES */
 
 .right-column > .column-content > .slide.active-slide{
-    transform: translateX(0);
+    visibility: visible;
 }
 
 .right-column > .column-content > .slide{
-    transform: translateX(-150%); /* I should be using the vw unit, but I want full compability */
     width: 100%;
     position: absolute;
     top: 0;
-    left: 0;
+    visibility: hidden;
 }
 
 /* SLIDES >> */
@@ -206,7 +211,7 @@ body > .fixed-left-column .nav.external-links > ul > li:hover .icon path{
 }
 
 .wrap > .main-column.right-column .resume{
-    overflow: hidden;
+    overflow: visible;
 }
 
 .wrap > .main-column.right-column .resume-sections{
