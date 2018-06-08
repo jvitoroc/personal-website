@@ -1,44 +1,40 @@
 @font-face{
     font-family: "Cinzel";
-    src: "../fonts/Cinzel-Regular.ttf",
+    src: "../fonts/Cinzel-Regular.ttf", 
 }
-
 @font-face{
     font-family: "Roboto";
-    src: "../fonts/Roboto-Light",
-         "../fonts/Roboto-Medium",
-         "../fonts/Roboto-Bold";
+    src: "../fonts/Roboto-Light", "../fonts/Roboto-Medium", "../fonts/Roboto-Bold";
 }
-
-/*
-* I just wanted the best performance I could get, now the CSS is hard to maintain.
-* Never abuse of selectors.
-*/
-
+/* * I just wanted the best performance I could get, now the CSS is hard to maintain. * Never abuse of selectors. */
+input[type=checkbox] {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+   /* For mobile, it's typically better to position checkbox on top of clickable area and turn opacity to 0 instead. */
+}
 ul{
     padding: 0;
     margin: 0;
     list-style: none;
 }
-
-* { box-sizing: border-box; }
-
+* {
+    box-sizing: border-box;
+}
 a{
     text-decoration: none;
 }
-
 body{
     font-family: "Roboto";
     -moz-backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
-
 body > #gap-between-columns{
     position: fixed;
     height: 100%;
     transform: translateX(200px);
-    width: 200px;
+    width: 400px;
     z-index: 2;
     -webkit-box-shadow: -10px 0px 20px 0px rgba(171,171,171,0.61);
     -moz-box-shadow: -10px 0px 20px 0px rgba(171,171,171,0.61);
@@ -47,13 +43,10 @@ body > #gap-between-columns{
     transition-duration: 0.3s;
     background: #fff;
 }
-
-body > #gap-between-columns.slide-to-right{
+body > #gap-between-columns.slide-to-right, body > #toggle-left-column:checked ~ #gap-between-columns {
     transform: translateX(250px);
 }
-
 /* << LEFT COLUMN */
-
 body > .fixed-left-column{
     width: 200px;
     padding-top: 108px;
@@ -61,8 +54,9 @@ body > .fixed-left-column{
     position: fixed;
     user-select: none;
     z-index: 1;
+    box-sizing: content-box;
+    padding-right: 50px;
 }
-
 body > .fixed-left-column .username{
     font-family: "Cinzel";
     font-weight: 400;
@@ -73,25 +67,21 @@ body > .fixed-left-column .username{
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
 body > .fixed-left-column .nav{
     box-sizing: border-box;
     width: 100%;
     padding-left: 32px;
     margin-top: 70px;
 }
-
 body > .fixed-left-column .nav.menu > ul > li{
     font-weight: 300;
     font-size: 1.4em;
     transition: 0.3s;
     cursor: pointer;
 }
-
 body > .fixed-left-column .nav.menu > ul > li:not(:last-of-type){
     margin-bottom: 10px;
 }
-
 body > .fixed-left-column .nav.menu > ul > li:after{
     content: "";
     display: block;
@@ -101,69 +91,61 @@ body > .fixed-left-column .nav.menu > ul > li:after{
     transition: 0.3s;
     margin-top: 8px;
 }
-
-body > .fixed-left-column .nav.menu > ul > li.active,
-body > .fixed-left-column .nav.menu > ul > li:hover{
+body > .fixed-left-column .nav.menu > ul > li.active, body > .fixed-left-column .nav.menu > ul > li:hover{
     color: #000;
 }
-
-body > .fixed-left-column .nav.menu > ul > li.active:after,
-body > .fixed-left-column .nav.menu > ul > li:hover:after{
+body > .fixed-left-column .nav.menu > ul > li.active:after, body > .fixed-left-column .nav.menu > ul > li:hover:after{
     width: 80%;
 }
-
 body > .fixed-left-column .nav.external-links{
     margin-top: 70px;
 }
-
 body > .fixed-left-column .nav.external-links > ul{
     font-weight: 500;
     font-size: 1.2em;
 }
-
 body > .fixed-left-column .nav.external-links > ul > li{
     margin: 3px 0;
 }
-
 body > .fixed-left-column .nav.external-links > ul > li > a{
     display: inline-block;
     color: rgba(0,0,0,0.53);
     transition: 0.2s;
     width: 100px;
 }
-
 body > .fixed-left-column .nav.external-links > ul > li .icon{
     position: relative;
     left: 70px;
     bottom: 1px;
     z-index: -1;
 }
-
 body > .fixed-left-column .nav.external-links > ul > li .icon path{
     fill: rgba(0,0,0,0.53);
     transition: 0.2s;
 }
-
 body > .fixed-left-column .nav.external-links > ul > li:hover a{
     color: #000;
 }
-
 body > .fixed-left-column .nav.external-links > ul > li:hover .icon path{
     fill: #000;
 }
-
-.wrap > .main-column.right-column > .hamburger{
+body > .hamburger{
     position: fixed;
     z-index: 4;
+    margin-left: 6px;
     width: 100px;
     display: none;
 }
-
+.hamburger-inner, .hamburger-inner:after, .hamburger-inner:before{
+    width: 30px;
+    height: 3.4px;
+}
+.hamburger .hamburger-inner, body > .hamburger .hamburger-inner:after, body > .hamburger .hamburger-inner:before{
+    background: rgba(0,0,0,.67);
+}
 /* LEFT COLUMN >> */
-
 /* << RIGHT COLUMN */
-
-.wrap > .main-column.right-column{
+.main-column.right-column{
     background: #fff;
     z-index: 3;
     position: relative;
@@ -175,66 +157,54 @@ body > .fixed-left-column .nav.external-links > ul > li:hover .icon path{
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
-
-.wrap > .main-column.right-column.slide-to-right{
+.main-column.right-column.slide-to-right, #toggle-left-column:checked ~ .main-column.right-column{
     margin-left: 250px;
 }
-
-.wrap > .main-column.right-column > .column-content{
+.main-column.right-column > .column-content{
     margin-left: 30px;
     max-width: calc(100% - 50px);
     min-width: calc(100% - 50px);
     position: relative;
 }
-
 /* << SLIDES */
-
 .right-column > .column-content > .slide.active-slide{
-    visibility: visible;
+    top: 0px;
+    left: 0px;
 }
-
 .right-column > .column-content > .slide{
     width: 100%;
     position: absolute;
-    top: 0;
-    visibility: hidden;
+    top: -9999px;
+    left: -9999px;
 }
-
 /* SLIDES >> */
-
- /* << SECTIONS */
-
- .wrap .right-column .section .section-title{
+/* << SECTIONS */
+.right-column .section .section-title{
     color: rgba(0,0,0,0.65);
     font-size: 2em;
     margin: 0 0 0 15px;
 }
-
-.wrap > .main-column.right-column .resume{
+.main-column.right-column .resume{
     overflow: visible;
 }
-
-.wrap > .main-column.right-column .resume-sections{
+.main-column.right-column .resume-sections{
+    background: #fff;
     margin-top: 100px;
 }
-
-.wrap > .main-column.right-column .section .section-content{
+.main-column.right-column .section .section-content{
     width: 550px;
     margin-top: 75px;
 }
-
-.wrap > .main-column.right-column .section .section-content .section-list-item{
+.main-column.right-column .section .section-content .section-list-item{
     margin-bottom: 45px;
 }
-
-.wrap > .main-column.right-column .section .section-content .section-list-item-title{
+.main-column.right-column .section .section-content .section-list-item-title{
     font-weight: bold;
     position: relative;
     margin: 0px;
 }
-
 /* left title of each section list item */
-.wrap > .main-column.right-column .section .section-content .section-list-item-title.left:after{
+.main-column.right-column .section .section-content .section-list-item-title.left:after{
     content: "";
     width: 4px;
     height: 4px;
@@ -245,26 +215,20 @@ body > .fixed-left-column .nav.external-links > ul > li:hover .icon path{
     right: 0;
     top: 9px;
 }
-
-.wrap > .main-column.right-column .section .section-content .section-list-item-year{
+.main-column.right-column .section .section-content .section-list-item-year{
     font-weight: 400;
     color: #707070;
 }
-
-.wrap > .main-column.right-column .section .section-content .section-list-item-description{
+.main-column.right-column .section .section-content .section-list-item-description{
     font-weight: 400;
     font-size: 0.875em;
 }
-
-.wrap > .main-column.right-column .section .section-content .section-list-item-description > p{
+.main-column.right-column .section .section-content .section-list-item-description > p{
     margin: 5px 0 0 0;
 }
-
 /* SECTIONS >> */
-
 /* << SECTION NAV */
-
-.wrap > .main-column.right-column .resume > .sections-nav{
+.main-column.right-column .resume > .sections-nav{
     width: 100%;
     height: 80px;
     margin-left: -20px;
@@ -272,25 +236,44 @@ body > .fixed-left-column .nav.external-links > ul > li:hover .icon path{
     position: fixed;
     z-index: 3;
     transition: 0.3s;
+    overflow: hidden;
 }
-
-.wrap > .main-column.right-column .resume > .sections-nav.show-shadow{
+.main-column.right-column .resume > .sections-nav.show-shadow{
     -webkit-box-shadow: 0 20px 20px -20px rgba(171,171,171,0.61);
     -moz-box-shadow: 0 20px 20px -20px rgba(171,171,171,0.61);
     box-shadow: 0 20px 20px -20px rgba(171,171,171,0.61);
 }
-
-.wrap > .main-column.right-column .resume > .sections-nav nav{
+.main-column.right-column .resume > .sections-nav nav{
     position: absolute;
     bottom: 10px;
+    width: 100%;
     margin-left: 26px;
 }
-
-.wrap > .main-column.right-column .resume > .sections-nav ul{
+.main-column.right-column .resume > .sections-nav ul.menu{
     display: flex;
 }
+.main-column.right-column .resume > .sections-nav .dropdown-indicator{
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    display: none;
+}
 
-.wrap > .main-column.right-column .resume > .sections-nav ul li > a{
+.main-column.right-column .resume > .sections-nav .dropdown-indicator svg{
+    display: none;
+    margin: 0 auto;
+}
+
+.main-column.right-column .resume > .sections-nav .dropdown-indicator.arrow-down .down,
+.main-column.right-column .resume > .sections-nav .dropdown-indicator.arrow-up .up
+{
+    display: block;
+}
+
+.main-column.right-column .resume > .sections-nav ul.menu-mobile li.active a:after, .main-column.right-column .resume > .sections-nav ul.menu-mobile li:hover a:after{
+    background: #000;
+}
+.main-column.right-column .resume > .sections-nav ul li > a{
     padding: 5px 10px;
     margin-right: 10px;
     color: rgba(0,0,0,0.67);
@@ -298,30 +281,22 @@ body > .fixed-left-column .nav.external-links > ul > li:hover .icon path{
     user-select: none;
     cursor: pointer;
 }
-
 #education .section-content{
     margin-bottom: 150px;
 }
-
-.wrap > .main-column.right-column .resume > .sections-nav ul li.active > a,
-.wrap > .main-column.right-column .resume > .sections-nav ul li:hover > a{
+.main-column.right-column .resume > .sections-nav ul li.active > a, .main-column.right-column .resume > .sections-nav ul li:hover > a{
     color: #000;
 }
-
 /* SECTION NAV >> */
-
 /* << WORK SLIDE */
-
 .work-grid > .grid-item img{
     width: 100%;
     display: block;
 }
-
 .work-grid{
     margin: auto;
     margin-top: 20px;
 }
-
 .work-grid > .grid-item{
     overflow: hidden;
     float: left;
@@ -331,7 +306,6 @@ body > .fixed-left-column .nav.external-links > ul > li:hover .icon path{
     border: 1px solid rgba(0,0,0,0.2);
     border-radius: 5px;
 }
-
 .work-grid > .grid-item > .not-selected{
     transition: 0.3s;
     width: 100%;
@@ -341,11 +315,9 @@ body > .fixed-left-column .nav.external-links > ul > li:hover .icon path{
     left: 0;
     z-index: 1;
 }
-
 .work-grid:hover > .grid-item:hover .selected {
     opacity: 1;
 }
-
 .work-grid > .grid-item > .inner{
     width: 100%;
     height: auto;
@@ -357,7 +329,6 @@ body > .fixed-left-column .nav.external-links > ul > li:hover .icon path{
     animation-timing-function: ease-in-out;
     position: relative;
 }
-
 .work-grid > .grid-item > .selected{
     position: absolute;
     width: 100%;
@@ -370,39 +341,35 @@ body > .fixed-left-column .nav.external-links > ul > li:hover .icon path{
     background: rgba(0,0,0,0.5);
     transition: 0.3s;
 }
-
 .work-grid > .grid-item > .selected .grid-item-link{
     display: table-cell;
     vertical-align: middle;
     width: 175px;
     height: 175px;
 }
-
 .work-grid > .grid-item > .selected .grid-item-link-inner{
     margin: auto;
 }
-
 @keyframes slide-top-bottom{
-    from{transform: translateY(0);}
-    /* some master's math here  */
-    to{transform: translateY(calc(-50% + (175px - 50%)));} 
+    from{
+       transform: translateY(0);
+   }
+   /* some master's math here */
+    to{
+       transform: translateY(calc(-50% + (175px - 50%)));
+   }
 }
-
 .work-grid:after {
     content: '';
     display: block;
     clear: both;
 }
-
 /* WORK SLIDE >> */
-
- /* RIGHT COLUMN >> */
-
+/* RIGHT COLUMN >> */
 .see-more-link{
     padding: 17px;
     margin: 10px 0 30px 0;
 }
-
 .see-more-link > a{
     color: rgba(0,0,0,0.65);
     font-size: 1.2em;

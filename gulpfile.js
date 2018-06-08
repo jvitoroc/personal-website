@@ -7,6 +7,7 @@ var minify = require('gulp-minify');
 var uglify = require('gulp-uglify');
 var pump = require('pump');
 var rename = require('gulp-rename');
+var babel = require('gulp-babel');
 
 gulp.task('css', function() {
   var plugins = [
@@ -28,6 +29,9 @@ gulp.task('js', function() {
       "./js/vendor/isotope.js",
       "./js/plugins.js",
       "./js/main.js"])
+    .pipe(babel({
+      presets: ['env']
+    }))
     .pipe(concat("build.js"))
     .pipe(gulp.dest("./build"))
     .pipe(rename("script.js"))

@@ -3,11 +3,14 @@ var fixedLeftColumn = $("#fixed-left-column");
 var gap = $("#gap-between-columns");
 var resumeNav = $("#sections-nav");
 
+var lastMobile = false;
+
 function mouseOver(){
     if(window.innerWidth <= 800)
         return;
     rightColumn.addClass("slide-to-right");
     gap.addClass("slide-to-right");
+    lastMobile = false;
 }
 
 function mouseOut(){
@@ -15,6 +18,7 @@ function mouseOut(){
         return;
     rightColumn.removeClass("slide-to-right");
     gap.removeClass("slide-to-right");
+    lastMobile = false;
 }
 
 function onScroll(){
@@ -31,6 +35,12 @@ $(window).on("scroll", onScroll);
 
 fixedLeftColumn.on("mouseover", mouseOver);
 fixedLeftColumn.on("mouseout", mouseOut);
+
+fixedLeftColumn.on("click", function(){
+    if(lastMobile){
+        enableDrawer(false);
+    }
+});
 
 //
 
@@ -54,10 +64,14 @@ function changeSlide(toBeShown, toBeHidden, buttonToBeActive, buttonToBeUnactive
 }
 
 resumeButton.on("click", ()=>{
+    if(lastMobile)
+        enableDrawer(false);
     changeSlide(resumeSlide, workSlide, resumeButton, workButton);
 });
 
 workButton.on("click", ()=>{
+    if(lastMobile)
+        enableDrawer(false);
     changeSlide(workSlide, resumeSlide, workButton, resumeButton);
 });
 
@@ -65,8 +79,8 @@ workButton.on("click", ()=>{
 
 var hamburger = $(".hamburger");
 
-hamburger.on("click", ()=>{
-    if(!hamburger.hasClass("is-active")){
+function enableDrawer(enable){
+    if(enable){
         rightColumn.addClass("slide-to-right");
         gap.addClass("slide-to-right");
         hamburger.addClass("is-active");
@@ -75,5 +89,38 @@ hamburger.on("click", ()=>{
         gap.removeClass("slide-to-right");
         hamburger.removeClass("is-active");
     }
+}
+
+hamburger.on("click", ()=>{
+    lastMobile = true;
+    if(!hamburger.hasClass("is-active")){
+        enableDrawer(true);
+    }else{
+        enableDrawer(false);
+    }
+});
+
+//
+
+function enableResumeNav(enable){
+    if(enable){
+        dropdownIndicator.removeClass("arrow-down");
+        dropdownIndicator.addClass("arrow-up");
+        resumeNav.addClass("active");
+    }else{
+        dropdownIndicator.removeClass("arrow-up");
+        dropdownIndicator.addClass("arrow-down");
+        resumeNav.removeClass("active");
+    }
     
+}
+
+var dropdownIndicator = $(".dropdown-indicator");
+
+dropdownIndicator.on("click", function(){
+    if(!resumeNav.hasClass("active")){
+        enableResumeNav(true);
+    }else{
+        enableResumeNav(false);
+    }
 });
