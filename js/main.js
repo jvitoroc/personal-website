@@ -5,6 +5,30 @@ var resumeNav = $("#sections-nav");
 
 var lastMobile = false;
 
+function enableResumeNav(enable){
+    if(enable){
+        dropdownIndicator.removeClass("arrow-down");
+        dropdownIndicator.addClass("arrow-up");
+        resumeNav.addClass("active");
+    }else{
+        dropdownIndicator.removeClass("arrow-up");
+        dropdownIndicator.addClass("arrow-down");
+        resumeNav.removeClass("active");
+    }
+}
+
+function enableDrawer(enable){
+    if(enable){
+        rightColumn.addClass("slide-to-right");
+        gap.addClass("slide-to-right");
+        hamburger.addClass("is-active");
+    }else{
+        rightColumn.removeClass("slide-to-right");
+        gap.removeClass("slide-to-right");
+        hamburger.removeClass("is-active");
+    }
+}
+
 function mouseOver(){
     if(window.innerWidth <= 800)
         return;
@@ -79,18 +103,6 @@ workButton.on("click", ()=>{
 
 var hamburger = $(".hamburger");
 
-function enableDrawer(enable){
-    if(enable){
-        rightColumn.addClass("slide-to-right");
-        gap.addClass("slide-to-right");
-        hamburger.addClass("is-active");
-    }else{
-        rightColumn.removeClass("slide-to-right");
-        gap.removeClass("slide-to-right");
-        hamburger.removeClass("is-active");
-    }
-}
-
 hamburger.on("click", ()=>{
     lastMobile = true;
     if(!hamburger.hasClass("is-active")){
@@ -102,20 +114,12 @@ hamburger.on("click", ()=>{
 
 //
 
-function enableResumeNav(enable){
-    if(enable){
-        dropdownIndicator.removeClass("arrow-down");
-        dropdownIndicator.addClass("arrow-up");
-        resumeNav.addClass("active");
-    }else{
-        dropdownIndicator.removeClass("arrow-up");
-        dropdownIndicator.addClass("arrow-down");
-        resumeNav.removeClass("active");
-    }
-    
-}
-
 var dropdownIndicator = $(".dropdown-indicator");
+
+resumeNav.find("#menu").on("click", function(){
+    if(resumeNav.hasClass("active"))
+        enableResumeNav(false);
+});
 
 dropdownIndicator.on("click", function(){
     if(!resumeNav.hasClass("active")){
