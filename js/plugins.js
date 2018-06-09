@@ -45,7 +45,7 @@ $('#fullpage').fullpage({
   menu: '#menu',
   sectionSelector: '.fp-section',
   bigSectionsDestination: 'top',
-  anchors: ['fp-certificates', 'fp-skills', 'fp-education'],
+  anchors: ['fp-education', 'fp-skills', 'fp-certificates'],
 });
 
   // hack

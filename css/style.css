@@ -189,12 +189,14 @@ body > .hamburger{
     overflow: visible;
 }
 .main-column.right-column .resume-sections{
-    background: #fff;
     margin-top: 100px;
+}
+.main-column.right-column .section{
+    margin-bottom: 50px;
 }
 .main-column.right-column .section .section-content{
     width: 550px;
-    margin-top: 75px;
+    margin-top: 35px;
 }
 .main-column.right-column .section .section-content .section-list-item{
     margin-bottom: 45px;
@@ -282,9 +284,7 @@ body > .hamburger{
     user-select: none;
     cursor: pointer;
 }
-#education .section-content{
-    margin-bottom: 150px;
-}
+
 .main-column.right-column .resume > .sections-nav ul li.active > a, .main-column.right-column .resume > .sections-nav ul li:hover > a{
     color: #000;
 }
