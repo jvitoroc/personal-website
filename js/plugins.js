@@ -51,7 +51,6 @@ $('#fullpage').fullpage({
   // hack
 $("body").attr("style", "overflow-x: hidden !important; height: initial; overflow-y: visible");
 
-
 //
 
 var workGrid = document.querySelector('.work-grid');
