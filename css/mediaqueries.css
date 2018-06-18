@@ -3,7 +3,7 @@
         transform: translateX(0);
     }
 
-     .main-column.right-column{
+    .main-column.right-column{
         margin-left: 0;
         width: 100%;
         max-width: 100%;
@@ -53,6 +53,19 @@
         height: 110px;
     }
 
+}
+
+@media screen and (max-height: 475px){
+    body > .fixed-left-column{
+        overflow: auto;
+        font-size: 12px;
+        width: 260px;
+    }
+    body>#gap-between-columns.slide-to-right,
+    body>#toggle-left-column:checked~#gap-between-columns{
+        -webkit-transform: translateX(240px);
+        transform: translateX(240px);
+    }
 }
 
 @media screen and (max-width: 325px){

@@ -1,11 +1,13 @@
-@font-face{
+/* @font-face{
     font-family: "Cinzel";
     src: "../fonts/Cinzel-Regular.ttf", 
 }
 @font-face{
     font-family: "Roboto";
     src: "../fonts/Roboto-Light", "../fonts/Roboto-Medium", "../fonts/Roboto-Bold";
-}
+} */
+
+
 /* * I just wanted the best performance I could get, now the CSS is hard to maintain. * Never abuse of selectors. */
 input[type=checkbox] {
     position: absolute;
@@ -44,18 +46,20 @@ body > #gap-between-columns{
     transition-duration: 0.3s;
     background: #fff;
 }
-body > #gap-between-columns.slide-to-right, body > #toggle-left-column:checked ~ #gap-between-columns {
+body > #gap-between-columns.slide-to-right,
+body > #toggle-left-column:checked ~ #gap-between-columns{
     transform: translateX(250px);
 }
 /* << LEFT COLUMN */
 body > .fixed-left-column{
-    width: 200px;
+    width: 250px;
     padding-top: 108px;
     height: 100%;
     position: fixed;
     user-select: none;
     z-index: 1;
-    box-sizing: content-box;
+    box-sizing: border-box;
+    overflow: hidden;
     padding-right: 50px;
 }
 body > .fixed-left-column .username{
@@ -120,6 +124,15 @@ body > .fixed-left-column .nav.external-links > ul > li .icon{
     bottom: 1px;
     z-index: -1;
 }
+
+.fixed-left-column-content{
+    width: 100%;
+    height: auto;
+    top: 0;
+    position: relative;
+    margin-bottom: 20px;
+}
+
 body > .fixed-left-column .nav.external-links > ul > li .icon path{
     fill: rgba(0,0,0,0.53);
     transition: 0.2s;
@@ -191,9 +204,7 @@ body > .hamburger{
 .main-column.right-column .resume-sections{
     margin-top: 100px;
 }
-.main-column.right-column .section{
-    margin-bottom: 50px;
-}
+
 .main-column.right-column .section .section-content{
     width: 550px;
     margin-top: 35px;
@@ -204,6 +215,7 @@ body > .hamburger{
 .main-column.right-column .section .section-content .section-list-item-title{
     font-weight: bold;
     position: relative;
+    color: #333;
     margin: 0px;
 }
 /* left title of each section list item */
@@ -273,9 +285,6 @@ body > .hamburger{
     display: block;
 }
 
-.main-column.right-column .resume > .sections-nav ul.menu-mobile li.active a:after, .main-column.right-column .resume > .sections-nav ul.menu-mobile li:hover a:after{
-    background: #000;
-}
 .main-column.right-column .resume > .sections-nav ul li > a{
     padding: 5px 10px;
     margin-right: 10px;
@@ -286,7 +295,7 @@ body > .hamburger{
 }
 
 .main-column.right-column .resume > .sections-nav ul li.active > a, .main-column.right-column .resume > .sections-nav ul li:hover > a{
-    color: #000;
+    color: #333;
 }
 /* SECTION NAV >> */
 /* << WORK SLIDE */

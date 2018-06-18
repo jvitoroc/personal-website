@@ -5,15 +5,25 @@ var resumeNav = $("#sections-nav");
 
 var lastMobile = false;
 
+function showResumeNavShadow(show){
+    if(show){
+        resumeNav.addClass("show-shadow");
+    }else{
+        resumeNav.removeClass("show-shadow");
+    }
+}
+
 function enableResumeNav(enable){
     if(enable){
         dropdownIndicator.removeClass("arrow-down");
         dropdownIndicator.addClass("arrow-up");
         resumeNav.addClass("active");
+        showResumeNavShadow(true);
     }else{
         dropdownIndicator.removeClass("arrow-up");
         dropdownIndicator.addClass("arrow-down");
         resumeNav.removeClass("active");
+        showResumeNavShadow(false);
     }
 }
 
@@ -47,9 +57,9 @@ function mouseOut(){
 
 function onScroll(){
     if(window.scrollY > 10 && !resumeNav.hasClass("show-shadow")){
-        resumeNav.addClass("show-shadow");
+        showResumeNavShadow(true);
     }else if(window.scrollY < 10){
-        resumeNav.removeClass("show-shadow");
+        showResumeNavShadow(false);
     }
 }
 

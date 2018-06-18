@@ -9,6 +9,7 @@
   "dependencies": {
     "autoprefixer": "^8.6.0",
     "gulp": "^3.9.1",
+    "gulp-htmlmin": "^4.0.0",
     "gulp-minify": "^2.1.0",
     "gulp-rename": "^1.2.3",
     "gulp-uglify": "^3.0.0",
